@@ -14,6 +14,7 @@ foreach($figuras->getBy(new AreaFilter($area)) as $figura) {
             " | <a href='verFigura.php?id=". $figura->getId() . "'>VER </a>" .
          "</li>";
 }
-echo "</ul>";
-
+echo "
+    </ul>
+    <a href='./'>Volver</a>";
 ?>

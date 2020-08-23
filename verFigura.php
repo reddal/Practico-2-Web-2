@@ -15,4 +15,4 @@ echo
         <li><strong>Tipo: </strong>" . $figura->getName() . "</li>
         <li><strong>Perímetro: </strong>" . $figura->getPerimetro() . "</li>
         <li><strong>Área: </strong>" . $figura->getArea() . "</li>
-    <ul>";
+    </ul>";

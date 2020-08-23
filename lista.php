@@ -15,6 +15,8 @@ foreach($figuras->getAll() as $figura) {
          "</li>";
 }
 
-echo "</ul>";
+echo "
+    </ul>
+    <a href='./'>Volver</a>";
 
 ?>

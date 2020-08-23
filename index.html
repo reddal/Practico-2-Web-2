@@ -9,12 +9,13 @@
 
     <h1>Figuras</h1>
 
-    <ul>
-        <li><a href="lista.php">Listado de figuras</a></li>
-    </ul>
+    <a href="lista.php">Ver todas las figuras geométricas</a>
 
+
+    <h4> <h4>
     <form action="filtro.php" method="GET">
-        <input type="text" name="area" placeholder="Introduzca área...">
+        <label for="area">Buscar figuras con área menor a: </label>
+        <input id="area" type="number" name="area" placeholder="Introduzca área...">
         <button type="submit">Buscar</button>
     </form>
     
