@@ -2,7 +2,8 @@
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 require_once "getStuff.php";
-
+require_once 'lib/Figuras.php';
+require_once 'lib/AreaFilter.php';
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -16,7 +17,14 @@ switch ($params[0]) {
         getList();
         break;
     case 'filter':
-        getFiltered($_GET['area']);
+        if (!empty($_GET['area'])) {
+
+            getFiltered($_GET['area']);
+        }
+        else {
+            echo('por favor ingresa un area y prueba nuevamente');
+            echo("<br><a href='./'>Volver</a>");
+        }
         break;
     case 'detalle':
         getDetailed($params[1]);

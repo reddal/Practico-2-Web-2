@@ -29,7 +29,6 @@ function getHome()
 }
 function getList()
 {
-    require_once 'lib/Figuras.php';
 
     // instancia la clase Figuras para acceder a las figuras
     $figuras = new Figuras();
@@ -50,9 +49,7 @@ function getList()
     <a href='./'>Volver</a>";
 }
 function getFiltered($area){
-    require_once 'lib/Figuras.php';
-    require_once 'lib/AreaFilter.php';
-    
+
     // instancio la clase Figuras para trabajar con las figuras del sistema
     $figuras = new Figuras();
     
@@ -68,7 +65,6 @@ function getFiltered($area){
         <a href='./'>Volver</a>";
 }
 function getDetailed($id){
-    require_once 'lib/Figuras.php';
 
     // instancia la clase Figuras para acceder a las figuras
     $figuras = new Figuras();
