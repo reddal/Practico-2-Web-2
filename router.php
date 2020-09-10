@@ -13,17 +13,27 @@ $params = explode('/', $action);
 
 switch ($params[0]) {
     case 'listar':
-        getList();
-        break;
     case 'filter':
-        getFiltered($_GET['area']);
+        if (isset($_GET['area'])) {
+            if (!empty($_GET['area'])) {
+                getList($_GET['area']);
+            } else {
+                echo ('ingrese un area e intente de nuevo');
+                echo ("<br><a href='./'>Volver</a>");
+            }
+        } else {
+            getList(null);
+        }
         break;
+
     case 'detalle':
         getDetailed($params[1]);
         break;
+
     case 'home':
         getHome();
         break;
+        
     default:
         echo ('<h1>404</h1>');
         break;

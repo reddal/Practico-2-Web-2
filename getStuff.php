@@ -27,62 +27,58 @@ function getHome()
     </html>';
     echo ($html);
 }
-function getList()
+
+function getList($area)
+{
+    require_once 'lib/Figuras.php';
+    require_once 'lib/AreaFilter.php';
+
+    // instancio la clase Figuras para trabajar con las figuras del sistema
+    $figuras = new Figuras();
+    if (isset($area)) {
+
+        echo "Las figuras con area menor a $area son:<ul>";
+        foreach ($figuras->getBy(new AreaFilter($area)) as $figura) {
+            echo "<li>" .
+                $figura->ToString() .
+                " | <a href='detalle/" . $figura->getId() . "'>VER </a>" .
+                "</li>";
+        }
+        echo "
+        </ul>
+        <a href='./'>Volver</a>";
+    } else {
+
+        echo
+            "<h1>Listado de figuras</h1>
+        <ul>";
+        foreach ($figuras->getAll() as $figura) {
+            echo "<li>" .
+                $figura->ToString() .
+                " | <a href='detalle/" . $figura->getId() . "'>VER </a>" .
+                "</li>";
+        }
+        echo "
+        </ul>
+        <a href='./'>Volver</a>";
+    }
+}
+function getDetailed($id)
 {
     require_once 'lib/Figuras.php';
 
     // instancia la clase Figuras para acceder a las figuras
     $figuras = new Figuras();
 
-    echo
-        "<h1>Listado de figuras</h1>
-    <ul>";
-
-    foreach ($figuras->getAll() as $figura) {
-        echo "<li>" .
-            $figura->ToString() .
-            " | <a href='detalle/" . $figura->getId() . "'>VER </a>" .
-            "</li>";
-    }
-
-    echo "
-    </ul>
-    <a href='./'>Volver</a>";
-}
-function getFiltered($area){
-    require_once 'lib/Figuras.php';
-    require_once 'lib/AreaFilter.php';
-    
-    // instancio la clase Figuras para trabajar con las figuras del sistema
-    $figuras = new Figuras();
-    
-    echo "Las figuras con area menor a $area son:<ul>";
-    foreach($figuras->getBy(new AreaFilter($area)) as $figura) {
-        echo "<li>" . 
-                $figura->ToString() . 
-                " | <a href='detalle/". $figura->getId() . "'>VER </a>" .
-             "</li>";
-    }
-    echo "
-        </ul>
-        <a href='./'>Volver</a>";
-}
-function getDetailed($id){
-    require_once 'lib/Figuras.php';
-
-    // instancia la clase Figuras para acceder a las figuras
-    $figuras = new Figuras();
-    
     // obtiene la figura según el ID pasado como parámetro
     $figura = $figuras->get($id);
-    
+
     // imprime el detalle de la figura
-    echo 
+    echo
         "<ul>
             <li><strong>ID: </strong>" . $figura->getId() . "</li>
             <li><strong>Tipo: </strong>" . $figura->getName() . "</li>
             <li><strong>Perímetro: </strong>" . $figura->getPerimetro() . "</li>
             <li><strong>Área: </strong>" . $figura->getArea() . "</li>
         </ul>";
-    
 }
